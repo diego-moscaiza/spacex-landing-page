@@ -1,0 +1,35 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getLaunchById } from "../../services/spacex";
+//import { getLatestLaunches } from "../../services/spacex";
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.params;
+
+let launch: any;
+if (id) {
+  launch = await getLaunchById({ id });
+}
+
+// Al usar la opcion hybrid se necesita colocar esto si deseamos en renderizamos desde el servidor
+export const prerender = false
+
+// Al tener activado el renderizado desde el servidor, no necesitamos esto, pero si necesitamos un renderizado desde el cliente sí es necesario
+// export async function getStaticPaths() {
+//   const launches = await getLatestLaunches();
+//   return launches.map((launch) => ({
+//     params: { id: launch.id },
+//   }));
+// }
+---
+
+<Layout title={`Lanzamiento ${id}`}>
+  <article>
+    <img class="w-52 h-auto" src={launch?.links?.patch?.small} alt={launch?.name} />
+    <h2 class="text-4xl font-bold">Launch #{launch?.flight_number}</h2>
+    <p class="text-lg">{launch?.details}</p>
+  </article>
+</Layout>

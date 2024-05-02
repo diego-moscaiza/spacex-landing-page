@@ -1,0 +1,12 @@
+---
+import * as content from '../pages/posts/content.md';
+import {Content as ContentMD} from '../pages/posts/content.md';
+import Layout from "../layouts/Layout.astro";
+
+const title = content.frontmatter.title;
+---
+<Layout title={title}>
+    <ContentMD />
+</Layout>
+
+

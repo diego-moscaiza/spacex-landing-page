@@ -1,0 +1,58 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  id: string;
+  details: string;
+  img: string;
+  success: boolean;
+  flightNumber: number;
+}
+
+const { id, img, success, flightNumber, details} = Astro.props;
+const launchStatus = success ? "Success" : "Failure";
+---
+
+<a
+  href={`/launches/${id}`}
+  class="rounded-lg border shadow-md bg-gray-200 border-gray-300 hover:scale-105 hover:bg-gray-300 hover:border-gray-500 transition flex flex-col"
+>
+  <picture class="flex justify-center p-4">
+    <img
+      src={img}
+      alt={`Patch for launch ${id}`}
+      class="h-250 w-150"
+    />
+  </picture>
+
+  <header class="p-4 flex-grow">
+    <!-- Forma correcta de definir varios estilos en ASTRO -->
+    <span
+      class:list={[
+        "text-xs font-semibold mr-2 px-2.5 py-0.5 rounded",
+        {
+          "bg-green-200 text-green-900": success,
+          "bg-red-200 text-red-900": !success,
+        },
+      ]}
+    >
+      <!-- "FORMA COTIDIADA DE DAR ESTILOS, usado en react.js" class={`
+    ${success ? "bg-green-200 text-green-900" : "bg-red-200 text-red-900"}
+    text-xs font-semibold mr-2 px-2.5 py-0.5 rounded`}
+     -->
+      {launchStatus}
+    </span>
+
+    <h2 class="my-2 text-2xl font-bold tracking-tight">
+      Flight #{flightNumber}
+    </h2>
+
+    <p class="mb-4 font-light text-gray-500">
+      {
+        details != null && details?.length > 100
+          ? details.slice(0, 100) + "..."
+          : details
+      }
+    </p>
+  </header>
+</a>
