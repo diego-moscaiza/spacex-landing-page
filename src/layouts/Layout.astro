@@ -1,6 +1,6 @@
 ---
 import { ViewTransitions } from "astro:transitions";
-import Header from "../components/Header.astro";
+import Navbar from "../components/Navbar/Navbar.astro";
 
 interface Props {
   title: string;
@@ -15,28 +15,23 @@ const { title } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script
+      is:inline
+      src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"
+    ></script>
     <title>{title}</title>
     <ViewTransitions />
   </head>
-  <body class="min-h-screen pb-32 max-w-4xl text-xl mt-5 mx-auto">
-    <Header />
-    <main class="max-w-5xl px-4 mx-auto">
+
+  <body>
+    <Navbar />
+    <main class="max-w-5xl px-4 mt-5 mx-auto">
       <slot />
     </main>
+
     <style is:global>
-      :root {
-        --accent: 136, 58, 234;
-        --accent-light: 224, 204, 250;
-        --accent-dark: 49, 10, 101;
-        --accent-gradient: linear-gradient(
-          45deg,
-          rgb(var(--accent)),
-          rgb(var(--accent-light)) 30%,
-          white 60%
-        );
-      }
       html {
         font-family:
           system-ui,
@@ -50,8 +45,6 @@ const { title } = Astro.props;
           "Open Sans",
           "Helvetica Neue",
           sans-serif;
-        background: #ffffff;
-        background-size: 224px;
       }
       code {
         font-family:

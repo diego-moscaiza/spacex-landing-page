@@ -1,6 +1,4 @@
 ---
-import { Image } from "astro:assets";
-
 interface Props {
   id: string;
   details: string;
@@ -21,11 +19,11 @@ const launchStatus = success ? "Success" : "Failure";
     <img
       src={img}
       alt={`Patch for launch ${id}`}
-      class="h-250 w-150"
+      class="h-5/5 w-4/5"
     />
   </picture>
 
-  <header class="p-4 flex-grow">
+  <section class="p-4 flex-grow">
     <!-- Forma correcta de definir varios estilos en ASTRO -->
     <span
       class:list={[
@@ -54,5 +52,5 @@ const launchStatus = success ? "Success" : "Failure";
           : details
       }
     </p>
-  </header>
+  </section>
 </a>

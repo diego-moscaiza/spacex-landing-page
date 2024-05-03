@@ -2,7 +2,7 @@
 title: Titulo de la pagina
 ---
 
-<h1 class="text-xs">Esto es un ejemplo de un articulo</h1>
+# Esto es un ejemplo de un articulo
 
 Eu laborum pariatur qui aliqua dolore. Mollit qui do dolor laboris sit aliqua id. Id sit consequat ex est.
 
