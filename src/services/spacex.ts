@@ -56,7 +56,7 @@ export const getOlderLaunches = async () => {
           sort: {
             date_unix: "asc",
           },
-          limit: 160,
+          limit: 10,
         },
       }),
     });
@@ -66,9 +66,6 @@ export const getOlderLaunches = async () => {
 
     // Ordena los 10 lanzamientos al límite
     const latestLaunches = launches.slice(-10);
-
-    // Ordena los lanzamientos de forma descendente
-    latestLaunches.sort((a, b) => b.flight_number - a.flight_number);
 
     return latestLaunches;
   } catch (error) {
