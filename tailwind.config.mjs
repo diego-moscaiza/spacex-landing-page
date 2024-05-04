@@ -8,7 +8,11 @@ export default {
     ],
   },
   theme: {
-    extend: {},
+    extend: {
+      scrollbar: {
+        hide: 'hidden',
+      },
+    },
   },
   plugins: [require("flowbite/plugin"), require("@tailwindcss/typography")],
   corePlugins: {

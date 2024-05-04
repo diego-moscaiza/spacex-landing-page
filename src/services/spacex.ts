@@ -23,7 +23,7 @@ export const getLatestLaunches = async () => {
           sort: {
             date_unix: "asc",
           },
-          limit: 160,
+          limit: 187,
         },
       }),
     });
@@ -31,8 +31,8 @@ export const getLatestLaunches = async () => {
     const jsonData = await res.json();
     const { docs: launches } = jsonData as APISpaceXResponse;
 
-    // Ordena los 10 lanzamientos al límite
-    const latestLaunches = launches.slice(-10);
+    // Ordena el límite de lanzamientos que mostrarse
+    const latestLaunches = launches.slice(-74);
 
     // Ordena los lanzamientos de forma descendente
     latestLaunches.sort((a, b) => b.flight_number - a.flight_number);
@@ -56,7 +56,7 @@ export const getOlderLaunches = async () => {
           sort: {
             date_unix: "asc",
           },
-          limit: 10,
+          limit: 86,
         },
       }),
     });
@@ -64,10 +64,7 @@ export const getOlderLaunches = async () => {
     const jsonData = await res.json();
     const { docs: launches } = jsonData as APISpaceXResponse;
 
-    // Ordena los 10 lanzamientos al límite
-    const latestLaunches = launches.slice(-10);
-
-    return latestLaunches;
+    return launches;
   } catch (error) {
     throw new Error("Error al obtener los lanzamientos");
   }
