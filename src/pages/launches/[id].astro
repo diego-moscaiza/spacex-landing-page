@@ -1,10 +1,13 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { getLaunchById } from "../../services/spacex";
-//import { getLatestLaunches } from "../../services/spacex";
 
 interface Props {
   id: string;
+  links: { patch: { small: string } };
+  name: string;
+  flight_number: number;
+  details: string;
 }
 
 const { id } = Astro.params;
@@ -15,21 +18,19 @@ if (id) {
 }
 
 // Al usar la opcion hybrid se necesita colocar esto si deseamos en renderizamos desde el servidor
-export const prerender = false
-
-// Al tener activado el renderizado desde el servidor, no necesitamos esto, pero si necesitamos un renderizado desde el cliente sí es necesario
-// export async function getStaticPaths() {
-//   const launches = await getLatestLaunches();
-//   return launches.map((launch) => ({
-//     params: { id: launch.id },
-//   }));
-// }
+export const prerender = false;
 ---
 
-<Layout title={`Lanzamiento ${id}`}>
-  <article>
-    <img class="w-52 h-auto" src={launch?.links?.patch?.small} alt={launch?.name} />
-    <h2 class="text-4xl font-bold">Launch #{launch?.flight_number}</h2>
-    <p class="text-lg">{launch?.details}</p>
+<Layout title={`Vuelo #${launch?.flight_number}`}>
+  <article class="flex flex-col justify-center pt-16 px-5">
+    <h2 class="text-4xl font-bold pb-5">
+      Vuelo #{launch?.flight_number} - {launch?.name}
+    </h2>
+    <img
+      class="w-52 h-auto"
+      src={launch?.links?.patch?.small}
+      alt={launch?.name}
+    />
+    <p class="text-xl pt-5">{launch?.details != null ? launch.details : "No se han encontrado detalles sobre el vuelo."}</p>
   </article>
 </Layout>

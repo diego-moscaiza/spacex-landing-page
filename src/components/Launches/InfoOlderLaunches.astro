@@ -11,6 +11,7 @@ const launches = await getOlderLaunches();
       <CardLaunch
         id={launch.id}
         img={launch.links.patch.small}
+        name={launch.name}
         details={launch.details}
         flightNumber={launch.flight_number}
         success={launch.success}
