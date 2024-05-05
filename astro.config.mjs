@@ -9,4 +9,7 @@ export default defineConfig({
     remotePatterns: [{ protocol: "https" }],
   },
   output: "hybrid",
+  adapter: node({
+    mode: 'standalone',
+  }),
 });
