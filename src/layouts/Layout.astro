@@ -10,7 +10,7 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth focus:scroll-auto md:scroll-auto">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
@@ -21,17 +21,21 @@ const { title } = Astro.props;
       is:inline
       src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"
     ></script>
+    <script src="../components/DarkMode/dark-mode.js"></script>
     <title>{title}</title>
     <!-- <ViewTransitions /> -->
   </head>
 
-  <body>
+  <body class="dark:bg-gray-900 dark:text-white">
     <Navbar />
     <main class="max-w-5xl px-4 mx-auto">
       <slot />
     </main>
 
     <style is:global>
+      @tailwind base;
+      @tailwind components;
+      @tailwind utilities;
       html {
         font-family:
           system-ui,

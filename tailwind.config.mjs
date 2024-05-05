@@ -10,7 +10,7 @@ export default {
   theme: {
     extend: {
       scrollbar: {
-        hide: 'hidden',
+        hide: "hidden",
       },
     },
   },
@@ -18,5 +18,5 @@ export default {
   corePlugins: {
     boxSizing: true,
   },
-  darkMode: "class",
+  darkMode: "selector",
 };
