@@ -1,6 +1,6 @@
 ---
-import CardLaunch from "./CardLaunch.astro";
-import { getOlderLaunches } from "../../services/spacex";
+import CardLaunchOlder from "./CardOlderLaunch.astro";
+import { getOlderLaunches } from "../../../services/spacex";
 
 const launches = await getOlderLaunches();
 ---
@@ -8,7 +8,7 @@ const launches = await getOlderLaunches();
 <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
   {
     launches.map((launch) => (
-      <CardLaunch
+      <CardLaunchOlder
         id={launch.id}
         img={launch.links.patch.small}
         name={launch.name}

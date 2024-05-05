@@ -1,0 +1,54 @@
+---
+interface Props {
+  id: string;
+  img: string;
+  name: string;
+  success: boolean;
+  flightNumber: number;
+  details: string;
+}
+
+const { id, img, name, success, flightNumber, details } = Astro.props;
+
+const launchId = id != null ? id : "null";
+const launchImage = img != null ? img : "null";
+const launchName = name != null ? name : "null";
+const launchFlightNumber = flightNumber != null ? flightNumber : "null";
+const launchStatus = success ? "Exitoso" : "Fallido";
+const launchDetails = details != null ? details : "null";
+---
+
+<a
+  href={`/older-launches/${launchId}`}
+  class="flex flex-col rounded-lg border transition shadow-md bg-gray-200 border-gray-300 hover:scale-105 hover:bg-gray-300 hover:border-gray-500 dark:bg-gray-700 dark:border-gray-500 dark:hover:bg-gray-800 dark:hover:border-gray-600"
+>
+  <picture class="flex justify-center pt-4 px-4">
+    <img src={launchImage} alt={`Patch for launch ${launchId}`} loading='lazy' class="w-60 h-60" />
+  </picture>
+
+  <section class="p-4 flex-grow">
+    <span
+      class:list={[
+        "text-xs font-semibold mr-2 px-2.5 py-0.5 rounded",
+        {
+          "bg-green-200 text-green-900": success,
+          "bg-red-200 text-red-900": !success,
+        },
+      ]}
+    >
+      {launchStatus}
+    </span>
+
+    <h2 class="my-2 text-2xl font-bold tracking-tight">
+      Vuelo #{launchFlightNumber} - {launchName}
+    </h2>
+
+    <p class="mb-2 font-normal text-gray-800 dark:text-gray-100">
+      {
+        launchDetails && details?.length > 100
+          ? details.slice(0, 100) + "..."
+          : details
+      }
+    </p>
+  </section>
+</a>

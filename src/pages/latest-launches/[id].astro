@@ -21,7 +21,7 @@ if (id) {
 export const prerender = false;
 ---
 
-<Layout title={`Vuelo #${launch?.flight_number}`}>
+<Layout title={`Vuelo #${launch?.flight_number} - ${launch?.name}`}>
   <article class="flex flex-col justify-center pt-16 px-5">
     <h2 class="text-4xl font-bold pb-5">
       Vuelo #{launch?.flight_number} - {launch?.name}
@@ -30,6 +30,7 @@ export const prerender = false;
       class="w-52 h-auto"
       src={launch?.links?.patch?.small}
       alt={launch?.name}
+      loading="eager"
     />
     <p class="text-xl pt-5">{launch?.details != null ? launch.details : "No se han encontrado detalles sobre el vuelo."}</p>
   </article>
