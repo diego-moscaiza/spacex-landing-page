@@ -1,10 +1,6 @@
 const lightThemeButton = document.getElementById("light-theme");
 const darkThemeButton = document.getElementById("dark-theme");
 
-const themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
-const themeToggleLightIcon = document.getElementById("theme-toggle-light-icon");
-const nameLightTheme = document.getElementById("name-light-theme");
-const nameDarkTheme = document.getElementById("name-dark-theme");
 
 
 lightThemeButton.addEventListener("click", async () => {
@@ -31,16 +27,8 @@ const loadTheme = async () => {
   const storedTheme = localStorage.getItem("theme");
   if (storedTheme === "dark") {
     document.documentElement.classList.add("dark");
-    themeToggleLightIcon.classList.remove("hidden");
-    themeToggleDarkIcon.classList.add("hidden");
-    nameLightTheme.classList.remove("hidden");
-    nameDarkTheme.classList.add("hidden");
   } else {
     document.documentElement.classList.remove("dark");
-    themeToggleLightIcon.classList.add("hidden");
-    themeToggleDarkIcon.classList.remove("hidden");
-    nameLightTheme.classList.add("hidden");
-    nameDarkTheme.classList.remove("hidden");
   }
 };
 
