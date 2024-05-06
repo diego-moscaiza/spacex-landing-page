@@ -4,18 +4,15 @@ import { getLaunchById } from "../../services/spacex";
 
 interface Props {
   id: string;
-  links: { patch: { small: string } };
   name: string;
   flight_number: number;
   details: string;
+  links: { patch: { small: string } };
 }
 
-const { id } = Astro.params;
+const { id } = Astro?.params;
 
-let launch: any;
-if (id) {
-  launch = await getLaunchById({ id });
-}
+const launch:any = id ? await getLaunchById({ id }) : "null";
 
 // Al usar la opcion hybrid se necesita colocar esto si deseamos en renderizamos desde el servidor
 export const prerender = false;
@@ -32,6 +29,6 @@ export const prerender = false;
       alt={launch?.name}
       loading="eager"
     />
-    <p class="text-xl pt-5">{launch?.details != null ? launch.details : "No se han encontrado detalles sobre el vuelo."}</p>
+    <p class="text-xl pt-5">{launch?.details != null ? launch.details : "No se han encontrado detalles sobre el vuelo?."}</p>
   </article>
 </Layout>
