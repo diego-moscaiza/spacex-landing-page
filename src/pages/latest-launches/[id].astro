@@ -12,7 +12,7 @@ interface Props {
 
 const { id } = Astro?.params;
 
-const launch:any = id ? await getLaunchById({ id }) : "null";
+const launch: any = id ? await getLaunchById({ id }) : "null";
 
 // Si es "true", renderizará desde el clente, si es "false" lo hará desde el servidor.
 export const prerender = true;
@@ -27,8 +27,30 @@ export async function getStaticPaths() {
 ---
 
 <Layout title={`Vuelo #${launch?.flight_number} - ${launch?.name}`}>
-  <article class="flex flex-col justify-center pt-16 px-5">
-    <h2 class="text-4xl font-bold pb-5">
+  <a
+    href="../latest-launches"
+    class="inline-flex px-6 py-3 mt-8 gap-2 text-base font-medium text-center text-black ring-2 rounded-lg focus:ring-4 focus:ring-blue-400 dark:text-white dark:focus:ring-blue-200"
+  >
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 28 28"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        fill="currentColor"
+        d="M24.9375 14C24.9375 14.3481 24.7992 14.6819 24.5531 14.9281C24.3069 15.1742 23.9731 15.3125 23.625 15.3125H7.54687L13.1819 20.9464C13.4284 21.193 13.567 21.5274 13.567 21.8761C13.567 22.2248 13.4284 22.5592 13.1819 22.8058C12.9353 23.0523 12.6009 23.1909 12.2522 23.1909C11.9035 23.1909 11.5691 23.0523 11.3225 22.8058L3.4475 14.9308C3.32514 14.8088 3.22805 14.6639 3.16181 14.5044C3.09556 14.3449 3.06146 14.1738 3.06146 14.0011C3.06146 13.8283 3.09556 13.6573 3.16181 13.4978C3.22805 13.3382 3.32514 13.1933 3.4475 13.0714L11.3225 5.1964C11.4446 5.07431 11.5895 4.97746 11.749 4.91139C11.9086 4.84532 12.0795 4.81131 12.2522 4.81131C12.4248 4.81131 12.5958 4.84532 12.7553 4.91139C12.9148 4.97746 13.0598 5.07431 13.1819 5.1964C13.304 5.31849 13.4008 5.46343 13.4669 5.62294C13.533 5.78246 13.567 5.95343 13.567 6.12609C13.567 6.29875 13.533 6.46971 13.4669 6.62923C13.4008 6.78875 13.304 6.93369 13.1819 7.05577L7.54687 12.6875H23.625C23.9731 12.6875 24.3069 12.8258 24.5531 13.0719C24.7992 13.3181 24.9375 13.6519 24.9375 14Z"
+      ></path>
+    </svg>
+    Volver
+  </a>
+  <article class="flex flex-col justify-center pt-8 pb-20 px-5">
+    <h2 class="text-2xl font-bold pb-5 sm:text-4xl">
       Vuelo #{launch?.flight_number} - {launch?.name}
     </h2>
     <img
@@ -37,6 +59,12 @@ export async function getStaticPaths() {
       alt={launch?.name}
       loading="eager"
     />
-    <p class="text-xl pt-5">{launch?.details != null ? launch.details : "No se han encontrado detalles sobre el vuelo?."}</p>
+    <p class="text-sm pt-5 sm:text-base">
+      {
+        launch?.details != null
+          ? launch.details
+          : "No se han encontrado detalles sobre el vuelo?."
+      }
+    </p>
   </article>
 </Layout>
