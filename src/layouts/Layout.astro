@@ -1,5 +1,4 @@
 ---
-import { ViewTransitions } from "astro:transitions";
 import Navbar from "../components/Navbar/Navbar.astro";
 
 interface Props {
@@ -23,7 +22,6 @@ const { title } = Astro.props;
     ></script>
     <script src="../components/DarkMode/dark-mode.js"></script>
     <title>{title}</title>
-    <!-- <ViewTransitions /> -->
   </head>
 
   <body class="dark:bg-gray-900 dark:text-white">
@@ -36,6 +34,7 @@ const { title } = Astro.props;
       @tailwind base;
       @tailwind components;
       @tailwind utilities;
+
       html {
         font-family:
           system-ui,
@@ -49,7 +48,10 @@ const { title } = Astro.props;
           "Open Sans",
           "Helvetica Neue",
           sans-serif;
+        scroll-behavior: smooth;
+        scrollbar-gutter: stable;
       }
+
       code {
         font-family:
           Menlo,

@@ -8,15 +8,11 @@ export default {
     ],
   },
   theme: {
-    extend: {
-      scrollbar: {
-        hide: "hidden",
-      },
-    },
+    extend: {},
   },
   plugins: [require("flowbite/plugin"), require("@tailwindcss/typography")],
   corePlugins: {
     boxSizing: true,
   },
-  darkMode: "selector",
+  darkMode: "class",
 };
