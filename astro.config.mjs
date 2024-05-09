@@ -15,7 +15,7 @@ export default defineConfig({
       },
     ],
   },
-  output: 'server',
+  output: 'hybrid',
   adapter: node({
     mode: 'standalone',
   }),
