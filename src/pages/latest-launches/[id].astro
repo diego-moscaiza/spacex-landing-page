@@ -14,7 +14,8 @@ const { id } = Astro?.params;
 
 const launch: any = id ? await getLaunchById({ id }) : "null";
 
-// Si está activado el renderizado desde el servidor, no necesitamos esto, pero si necesitamos un renderizado desde el cliente sí es necesario.
+export const prerender = true
+
 export async function getStaticPaths() {
   const launches = await getLatestLaunches();
   return launches.map((launch) => ({
