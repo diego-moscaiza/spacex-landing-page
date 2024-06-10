@@ -1,6 +1,6 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
-import node from "@astrojs/node";
+import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
@@ -15,8 +15,8 @@ export default defineConfig({
       },
     ],
   },
-  output: 'hybrid',
-  adapter: node({
-    mode: 'standalone',
+  output: 'server',
+  adapter: vercel({
+    imageService: true,
   }),
 });
