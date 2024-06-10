@@ -12,6 +12,8 @@ interface Props {
 
 const { id } = Astro.params;
 
+export const prerender = true;
+
 const launch: any = id ? await getLaunchById({ id }) : "null";
 
 export async function getStaticPaths() {
