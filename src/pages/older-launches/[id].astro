@@ -14,8 +14,6 @@ const { id } = Astro.params;
 
 const launch: any = id ? await getLaunchById({ id }) : "null";
 
-export const prerender = true
-
 export async function getStaticPaths() {
   const launches = await getOlderLaunches();
   return launches.map((launch) => ({
