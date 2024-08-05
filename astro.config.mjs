@@ -18,5 +18,6 @@ export default defineConfig({
   output: 'server',
   adapter: vercel({
     imageService: true,
+    isr: true,
   }),
 });
