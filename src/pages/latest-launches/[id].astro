@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { getLaunchById, getLatestLaunches } from "../../services/spacex";
+import { getLatestLaunches, getLaunchById } from "../../services/spacex";
 
 interface Props {
   id: string;
@@ -27,7 +27,7 @@ export async function getStaticPaths() {
 <Layout title={`Vuelo #${launch?.flight_number} - ${launch?.name}`}>
   <a
     href="../latest-launches"
-    class="inline-flex px-6 py-3 mt-8 gap-2 text-base font-medium text-center text-black ring-2 rounded-lg focus:ring-4 focus:ring-blue-400 dark:text-white dark:focus:ring-blue-200"
+    class="inline-flex px-6 py-3 mt-8 gap-2 ring-2 rounded-lg text-base font-medium text-center text-black focus:ring-4 focus:ring-blue-400 hover:bg-slate-200 dark:text-white dark:focus:ring-blue-200 dark:hover:bg-slate-800"
   >
     <svg
       width="24"
@@ -47,22 +47,29 @@ export async function getStaticPaths() {
     </svg>
     Volver
   </a>
-  <article class="flex flex-col justify-center pt-8 pb-20 px-5">
-    <h2 class="text-2xl font-bold pb-5 sm:text-4xl">
-      Vuelo #{launch?.flight_number} - {launch?.name}
-    </h2>
+  <article
+    class="flex flex-col sm:flex-row justify-start gap-5 mt-8 px-6 pt-6 pb-6 rounded-lg shadow-md bg-gray-50 border-gray-500 dark:bg-gray-800 dark:border-gray-600"
+  >
     <img
-      class="w-52 h-auto"
+      class="w-60 h-60 ml-6"
       src={launch?.links?.patch?.small}
       alt={launch?.name}
       loading="eager"
     />
-    <p class="text-sm pt-5 sm:text-base">
-      {
-        launch?.details != null
-          ? launch.details
-          : "No se han encontrado detalles sobre el vuelo?."
-      }
-    </p>
+    <section class="px-10">
+      <h2 class="text-2xl font-bold pb-5 sm:text-4xl">
+        Vuelo #{launch?.flight_number}
+      </h2>
+      <h3 class="text-lg sm:text-xl">
+        <span class="font-bold">Nombre de misión: </span>{launch?.name}
+      </h3>
+      <p class="pt-5 text-sm sm:text-base">
+        {
+          launch?.details != null
+            ? launch.details
+            : "No se han encontrado detalles sobre el vuelo."
+        }
+      </p>
+    </section>
   </article>
 </Layout>
